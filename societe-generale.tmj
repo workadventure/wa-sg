@@ -1773,7 +1773,7 @@
         {
          "columns":40,
          "firstgid":32030,
-         "image":"hbt-furniture.png",
+         "image":"tilesets\/hbt-furniture.png",
          "imageheight":1643,
          "imagewidth":1280,
          "margin":0,
