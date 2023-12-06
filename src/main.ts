@@ -4,20 +4,59 @@ import { bootstrapExtra } from "@workadventure/scripting-api-extra";
 
 console.log('Script started successfully');
 
-let currentPopup: any = undefined;
+let popupStand: any;
+let link: any;
 
 // Waiting for the API to be ready
 WA.onInit().then(() => {
-    console.log('Scripting API ready');
-    console.log('Player tags: ',WA.player.tags)
 
-    WA.room.area.onEnter('clock').subscribe(() => {
-        const today = new Date();
-        const time = today.getHours() + ":" + today.getMinutes();
-        currentPopup = WA.ui.openPopup("clockPopup", "It's " + time, []);
-    })
+    console.log('Add element to ActionBar');
+    WA.ui.actionBar.addButton({
+        id: 'help-btn',
+        // @ts-ignore
+        type: 'action',
+        imageSrc: 'https://svgur.com/i/10Sh.svg',
+        toolTip: 'Help',
+        callback: () => {
 
-    WA.room.area.onLeave('clock').subscribe(closePopup)
+        }
+    });
+
+
+
+    WA.room.area.onEnter("standZone").subscribe(() => {
+        console.log('Player language: ', WA.player.language);
+
+        if(popupStand) return;
+
+        if(WA.player.language == "fr-FR") {
+            popupStand = WA.ui.openPopup("popupStand", WA.state.txt_popup_stand_fr as string, [{
+                label: WA.state.cta_popup_stand_fr,
+                className: "primary",
+                callback: () => {
+                    link = WA.state.lnk_stand_fr;
+                    WA.nav.openCoWebSite(link);
+                    popupStand?.close();
+                    popupStand = null;
+                }
+            }]);
+        } else {
+            popupStand = WA.ui.openPopup("popupStand", WA.state.txt_popup_stand_en as string, [{
+                label: WA.state.cta_popup_stand_en,
+                className: "primary",
+                callback: () => {
+                    link = WA.state.lnk_stand_en;
+                    WA.nav.openCoWebSite(link);
+                    popupStand?.close();
+                    popupStand = null;
+                }
+            }]);
+        }
+    });
+    WA.room.area.onLeave("standZone").subscribe(() => {
+        popupStand?.close();
+        popupStand = null;
+    });
 
     // The line below bootstraps the Scripting API Extra library that adds a number of advanced properties/features to WorkAdventure
     bootstrapExtra().then(() => {
@@ -25,12 +64,5 @@ WA.onInit().then(() => {
     }).catch(e => console.error(e));
 
 }).catch(e => console.error(e));
-
-function closePopup(){
-    if (currentPopup !== undefined) {
-        currentPopup.close();
-        currentPopup = undefined;
-    }
-}
 
 export {};
