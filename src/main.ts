@@ -1,10 +1,11 @@
 /// <reference types="@workadventure/iframe-api-typings" />
 
 import { bootstrapExtra } from "@workadventure/scripting-api-extra";
+import { Popup } from "@workadventure/iframe-api-typings";
 
 console.log('Script started successfully');
 
-let popupStand: any;
+let popupStand: Popup|null;
 let link: any;
 
 // Waiting for the API to be ready
