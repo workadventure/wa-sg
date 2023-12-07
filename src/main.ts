@@ -19,7 +19,8 @@ WA.onInit().then(() => {
         imageSrc: 'https://svgur.com/i/10Sh.svg',
         toolTip: 'Help',
         callback: () => {
-
+            link = WA.state.lnk_stand_en;
+            WA.nav.openCoWebSite(link);
         }
     });
 
@@ -32,7 +33,7 @@ WA.onInit().then(() => {
 
         if(WA.player.language == "fr-FR") {
             popupStand = WA.ui.openPopup("popupStand", WA.state.txt_popup_stand_fr as string, [{
-                label: WA.state.cta_popup_stand_fr,
+                label: WA.state.cta_popup_stand_fr as string,
                 className: "primary",
                 callback: () => {
                     link = WA.state.lnk_stand_fr;
@@ -43,7 +44,7 @@ WA.onInit().then(() => {
             }]);
         } else {
             popupStand = WA.ui.openPopup("popupStand", WA.state.txt_popup_stand_en as string, [{
-                label: WA.state.cta_popup_stand_en,
+                label: WA.state.cta_popup_stand_en as string,
                 className: "primary",
                 callback: () => {
                     link = WA.state.lnk_stand_en;
