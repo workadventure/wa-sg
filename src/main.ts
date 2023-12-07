@@ -66,7 +66,7 @@ WA.onInit().then(() => {
         popupStand = null;
     });
 
-    WA.room.area.onEnter("standZone").subscribe(() => {
+    WA.room.area.onEnter("zoneBucarest").subscribe(() => {
         popupBucarest = WA.ui.openPopup("popupBucarest", "TO COMPLETE" as string, [{
                 label: "Fermer",
                 className: "primary",
@@ -76,12 +76,12 @@ WA.onInit().then(() => {
                 }
             }]);
     });
-    WA.room.area.onLeave("standZone").subscribe(() => {
+    WA.room.area.onLeave("zoneBucarest").subscribe(() => {
         popupBucarest?.close();
         popupBucarest = null;
     });
 
-    WA.room.area.onEnter("standZone").subscribe(() => {
+    WA.room.area.onEnter("zoneBangalore").subscribe(() => {
         popupBangalore = WA.ui.openPopup("popupBangalore", "TO COMPLETE" as string, [{
                 label: "Fermer",
                 className: "primary",
@@ -91,12 +91,12 @@ WA.onInit().then(() => {
                 }
             }]);
     });
-    WA.room.area.onLeave("standZone").subscribe(() => {
+    WA.room.area.onLeave("zoneBangalore").subscribe(() => {
         popupBangalore?.close();
         popupBangalore = null;
     });
 
-    WA.room.area.onEnter("standZone").subscribe(() => {
+    WA.room.area.onEnter("zoneStade").subscribe(() => {
         popupStade = WA.ui.openPopup("popupStade", "TO COMPLETE" as string, [{
                 label: "Fermer",
                 className: "primary",
@@ -106,12 +106,12 @@ WA.onInit().then(() => {
                 }
             }]);
     });
-    WA.room.area.onLeave("standZone").subscribe(() => {
+    WA.room.area.onLeave("zoneStade").subscribe(() => {
         popupStade?.close();
         popupStade = null;
     });
 
-    WA.room.area.onEnter("standZone").subscribe(() => {
+    WA.room.area.onEnter("zoneLille").subscribe(() => {
         popupLille = WA.ui.openPopup("popupLille", "TO COMPLETE" as string, [{
                 label: "Fermer",
                 className: "primary",
@@ -121,12 +121,12 @@ WA.onInit().then(() => {
                 }
             }]);
     });
-    WA.room.area.onLeave("standZone").subscribe(() => {
+    WA.room.area.onLeave("zoneLille").subscribe(() => {
         popupLille?.close();
         popupLille = null;
     });
 
-    WA.room.area.onEnter("standZone").subscribe(() => {
+    WA.room.area.onEnter("zoneParis").subscribe(() => {
         popupParis = WA.ui.openPopup("popupParis", "TO COMPLETE" as string, [{
                 label: "Fermer",
                 className: "primary",
@@ -136,12 +136,12 @@ WA.onInit().then(() => {
                 }
             }]);
     });
-    WA.room.area.onLeave("standZone").subscribe(() => {
+    WA.room.area.onLeave("zoneParis").subscribe(() => {
         popupParis?.close();
         popupParis = null;
     });
 
-    WA.room.area.onEnter("standZone").subscribe(() => {
+    WA.room.area.onEnter("zoneSakura").subscribe(() => {
         popupSakura = WA.ui.openPopup("popupSakura", "TO COMPLETE" as string, [{
                 label: "Fermer",
                 className: "primary",
@@ -151,7 +151,7 @@ WA.onInit().then(() => {
                 }
             }]);
     });
-    WA.room.area.onLeave("standZone").subscribe(() => {
+    WA.room.area.onLeave("zoneSakura").subscribe(() => {
         popupSakura?.close();
         popupSakura = null;
     });
