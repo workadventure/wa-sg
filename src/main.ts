@@ -6,6 +6,12 @@ import { Popup } from "@workadventure/iframe-api-typings";
 console.log('Script started successfully');
 
 let popupStand: Popup|null;
+let popupBucarest: Popup|null;
+let popupBangalore: Popup|null;
+let popupStade: Popup|null;
+let popupLille: Popup|null;
+let popupParis: Popup|null;
+let popupSakura: Popup|null;
 let link: any;
 
 // Waiting for the API to be ready
@@ -58,6 +64,96 @@ WA.onInit().then(() => {
     WA.room.area.onLeave("standZone").subscribe(() => {
         popupStand?.close();
         popupStand = null;
+    });
+
+    WA.room.area.onEnter("standZone").subscribe(() => {
+        popupBucarest = WA.ui.openPopup("popupBucarest", "TO COMPLETE" as string, [{
+                label: "Fermer",
+                className: "primary",
+                callback: () => {
+                    popupBucarest?.close();
+                    popupBucarest = null;
+                }
+            }]);
+    });
+    WA.room.area.onLeave("standZone").subscribe(() => {
+        popupBucarest?.close();
+        popupBucarest = null;
+    });
+
+    WA.room.area.onEnter("standZone").subscribe(() => {
+        popupBangalore = WA.ui.openPopup("popupBangalore", "TO COMPLETE" as string, [{
+                label: "Fermer",
+                className: "primary",
+                callback: () => {
+                    popupBangalore?.close();
+                    popupBangalore = null;
+                }
+            }]);
+    });
+    WA.room.area.onLeave("standZone").subscribe(() => {
+        popupBangalore?.close();
+        popupBangalore = null;
+    });
+
+    WA.room.area.onEnter("standZone").subscribe(() => {
+        popupStade = WA.ui.openPopup("popupStade", "TO COMPLETE" as string, [{
+                label: "Fermer",
+                className: "primary",
+                callback: () => {
+                    popupStade?.close();
+                    popupStade = null;
+                }
+            }]);
+    });
+    WA.room.area.onLeave("standZone").subscribe(() => {
+        popupStade?.close();
+        popupStade = null;
+    });
+
+    WA.room.area.onEnter("standZone").subscribe(() => {
+        popupLille = WA.ui.openPopup("popupLille", "TO COMPLETE" as string, [{
+                label: "Fermer",
+                className: "primary",
+                callback: () => {
+                    popupLille?.close();
+                    popupLille = null;
+                }
+            }]);
+    });
+    WA.room.area.onLeave("standZone").subscribe(() => {
+        popupLille?.close();
+        popupLille = null;
+    });
+
+    WA.room.area.onEnter("standZone").subscribe(() => {
+        popupParis = WA.ui.openPopup("popupParis", "TO COMPLETE" as string, [{
+                label: "Fermer",
+                className: "primary",
+                callback: () => {
+                    popupParis?.close();
+                    popupParis = null;
+                }
+            }]);
+    });
+    WA.room.area.onLeave("standZone").subscribe(() => {
+        popupParis?.close();
+        popupParis = null;
+    });
+
+    WA.room.area.onEnter("standZone").subscribe(() => {
+        popupSakura = WA.ui.openPopup("popupSakura", "TO COMPLETE" as string, [{
+                label: "Fermer",
+                className: "primary",
+                callback: () => {
+                    popupSakura?.close();
+                    popupSakura = null;
+                }
+            }]);
+    });
+    WA.room.area.onLeave("standZone").subscribe(() => {
+        popupSakura?.close();
+        popupSakura = null;
     });
 
     // The line below bootstraps the Scripting API Extra library that adds a number of advanced properties/features to WorkAdventure

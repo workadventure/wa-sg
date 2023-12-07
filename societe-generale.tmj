@@ -1270,6 +1270,138 @@
                  "width":342.666666666667,
                  "x":1614.66666666667,
                  "y":2049.33333333333
+                }, 
+                {
+                 "height":202.666666666667,
+                 "id":32,
+                 "name":"popupBucarest",
+                 "rotation":0,
+                 "type":"area",
+                 "visible":true,
+                 "width":448,
+                 "x":872,
+                 "y":1898.66666666667
+                }, 
+                {
+                 "height":176,
+                 "id":33,
+                 "name":"zoneBucarest",
+                 "rotation":0,
+                 "type":"area",
+                 "visible":true,
+                 "width":332,
+                 "x":789.333333333333,
+                 "y":2129.33333333333
+                }, 
+                {
+                 "height":180,
+                 "id":34,
+                 "name":"popupBangalore",
+                 "rotation":0,
+                 "type":"area",
+                 "visible":true,
+                 "width":526.666666666667,
+                 "x":556,
+                 "y":768
+                }, 
+                {
+                 "height":116,
+                 "id":35,
+                 "name":"zoneBangalore",
+                 "rotation":0,
+                 "type":"area",
+                 "visible":true,
+                 "width":458.666666666667,
+                 "x":641.333333333333,
+                 "y":968
+                }, 
+                {
+                 "height":236,
+                 "id":36,
+                 "name":"popupStade",
+                 "rotation":0,
+                 "type":"area",
+                 "visible":true,
+                 "width":506.666666666667,
+                 "x":1618.66666666667,
+                 "y":345.333333333333
+                }, 
+                {
+                 "height":154.666666666667,
+                 "id":37,
+                 "name":"zoneStade",
+                 "rotation":0,
+                 "type":"area",
+                 "visible":true,
+                 "width":446.666666666667,
+                 "x":1761.33333333333,
+                 "y":618.666666666667
+                }, 
+                {
+                 "height":202.666666666667,
+                 "id":38,
+                 "name":"popupLille",
+                 "rotation":0,
+                 "type":"area",
+                 "visible":true,
+                 "width":581.333333333333,
+                 "x":2278.66666666667,
+                 "y":1128
+                }, 
+                {
+                 "height":117.333333333333,
+                 "id":39,
+                 "name":"zoneLille",
+                 "rotation":0,
+                 "type":"area",
+                 "visible":true,
+                 "width":392,
+                 "x":2426.66666666667,
+                 "y":1336
+                }, 
+                {
+                 "height":272,
+                 "id":42,
+                 "name":"popupParis",
+                 "rotation":0,
+                 "type":"area",
+                 "visible":true,
+                 "width":553.333333333333,
+                 "x":3204,
+                 "y":992
+                }, 
+                {
+                 "height":150.666666666667,
+                 "id":43,
+                 "name":"zoneParis",
+                 "rotation":0,
+                 "type":"area",
+                 "visible":true,
+                 "width":292,
+                 "x":3377.33333333333,
+                 "y":1273.33333333333
+                }, 
+                {
+                 "height":246.666666666667,
+                 "id":44,
+                 "name":"popupSakura",
+                 "rotation":0,
+                 "type":"area",
+                 "visible":true,
+                 "width":526.666666666667,
+                 "x":3313.33333333333,
+                 "y":1730.66666666667
+                }, 
+                {
+                 "height":152,
+                 "id":45,
+                 "name":"zoneSakura",
+                 "rotation":0,
+                 "type":"area",
+                 "visible":true,
+                 "width":402.666666666667,
+                 "x":3370.66666666667,
+                 "y":2029.33333333333
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -1669,7 +1801,7 @@
          "y":0
         }],
  "nextlayerid":72,
- "nextobjectid":32,
+ "nextobjectid":46,
  "orientation":"orthogonal",
  "properties":[
         {
