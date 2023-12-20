@@ -1004,17 +1004,17 @@
         {
          "name":"mapDescription",
          "type":"string",
-         "value":"Teamsit metaverse: Lounge"
+         "value":"SG Onboarding"
         }, 
         {
          "name":"mapImage",
          "type":"string",
-         "value":"lounge.png"
+         "value":"gfl.png"
         }, 
         {
          "name":"mapName",
          "type":"string",
-         "value":"Lounge"
+         "value":"GFL"
         }, 
         {
          "name":"script",
