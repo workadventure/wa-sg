@@ -156,11 +156,28 @@ WA.onInit().then(() => {
         popupSakura = null;
     });
 
+    listenDoor('Room1')
+    listenDoor('Room2')
+    listenDoor('Room3')
+    listenDoor('Room4')
+
     // The line below bootstraps the Scripting API Extra library that adds a number of advanced properties/features to WorkAdventure
     bootstrapExtra().then(() => {
         console.log('Scripting API Extra ready');
     }).catch(e => console.error(e));
 
 }).catch(e => console.error(e));
+
+const listenDoor = (door: string) => {
+    WA.room.area.onEnter(door).subscribe(() => {
+        WA.room.showLayer(`doorOpen${door}`)
+        WA.room.hideLayer(`doorClosed${door}`)
+    })
+
+    WA.room.area.onLeave(door).subscribe(() => {
+        WA.room.showLayer(`doorClosed${door}`)
+        WA.room.hideLayer(`doorOpen${door}`)
+    })
+}
 
 export {};
