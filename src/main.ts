@@ -12,6 +12,7 @@ let popupStade: Popup|null;
 let popupLille: Popup|null;
 let popupParis: Popup|null;
 let popupSakura: Popup|null;
+let popupReplay: Popup|null;
 let link: any;
 
 // Waiting for the API to be ready
@@ -160,6 +161,21 @@ WA.onInit().then(() => {
     listenDoor('Room2')
     listenDoor('Room3')
     listenDoor('Room4')
+
+    WA.room.area.onEnter("replayInformation").subscribe(() => {
+        popupReplay = WA.ui.openPopup("replayPopup", "Bienvenue dans les cinémas GFL.\nVous pouvez aller visionner les replays dans une des 4 salles au-dessus.", [{
+            label: "Fermer",
+            className: "normal",
+            callback: () => {
+                popupReplay?.close();
+                popupReplay = null;
+            }
+        }]);
+    });
+    WA.room.area.onLeave("replayInformation").subscribe(() => {
+        popupReplay?.close();
+        popupReplay = null;
+    });
 
     // The line below bootstraps the Scripting API Extra library that adds a number of advanced properties/features to WorkAdventure
     bootstrapExtra().then(() => {
