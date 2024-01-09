@@ -31,6 +31,16 @@ WA.onInit().then(() => {
         }
     });
 
+    WA.ui.actionBar.addButton({
+        id: 'mapoverview-btn',
+        // @ts-ignore
+        type: 'action',
+        imageSrc: 'https://hugoaverty.github.io/map-overview/img/map.svg',
+        toolTip: 'Map overview',
+        callback: () => {
+            WA.nav.openCoWebSite("Mapoverview.svg");
+        }
+    });
 
 
     WA.room.area.onEnter("standZone").subscribe(() => {
