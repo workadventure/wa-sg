@@ -1979,7 +1979,7 @@
          "margin":0,
          "name":"Flat_Office",
          "spacing":0,
-         "tilecount":4096,
+         "tilecount":0,
          "tileheight":32,
          "tilewidth":32,
          "wangsets":[
@@ -2421,7 +2421,7 @@
          "margin":0,
          "name":"societe-generale-breadcrumb",
          "spacing":0,
-         "tilecount":10800,
+         "tilecount":0,
          "tileheight":32,
          "tilewidth":32
         }],
