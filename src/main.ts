@@ -246,12 +246,13 @@ function listenArea(contentArea: ContentArea) {
     WA.room.area.onEnter(contentArea.area).subscribe(() => {
         if(contentArea.interaction === 'WEBSITE') {
             const url = WA.state.loadVariable(`${contentArea.area}-${lang}-config`) as string
+            console.log("url to open is", url)
 
             if (WA.player.tags.includes('admin')) {
                 WA.ui.actionBar.addButton({
                     id: 'configure-btn',
                     label: lang === 'FR' ? "Configurer" : "Configure",
-                    callback: () => {    
+                    callback: () => {
                         modal = WA.ui.modal.openModal({
                             title: lang === 'FR' ? "Page d'administration" : "Administration page",
                             src: root + `/administration/index.html?area=${contentArea.area}`,
