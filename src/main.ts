@@ -18,6 +18,7 @@ const MESSAGE = {
         VIDEO: "watch the video.",
         WEBSITE: "open the website.",
         OBJECT: "discover the hidden object.",
+        UNDEFINED: "The URL is not defined."
     },
     FR: {
         TRIGGER: "Appuyez sur ESPACE ou touchez ici pour ",
@@ -25,6 +26,7 @@ const MESSAGE = {
         VIDEO: "regarder la vidéo.",
         WEBSITE: "ouvrir le site web.",
         OBJECT: "découvrir l'objet caché.",
+        UNDEFINED: "L'URL n'est pas définie."
     }
 }
 const CONTENT: any[] = [
@@ -265,7 +267,7 @@ function listenArea(contentArea: ContentArea) {
             }
            
             triggerMessage = WA.ui.displayActionMessage({
-                message: contentArea.message,
+                message: url ? contentArea.message : lang === 'FR' ? MESSAGE.FR.UNDEFINED : MESSAGE.EN.UNDEFINED,
                 callback: () => WA.nav.openTab(url)
             })
         } else if(contentArea.interaction === 'SCAVENGER') {
