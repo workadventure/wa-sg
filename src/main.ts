@@ -4,47 +4,58 @@ import { bootstrapExtra } from "@workadventure/scripting-api-extra";
 import { ActionMessage, CoWebsite, Popup } from "@workadventure/iframe-api-typings";
 import { getLayersMap, Properties } from "@workadventure/scripting-api-extra/dist";
 
-console.log('Script started successfully');
+console.info('Script started successfully');
 
 let popupStand: Popup|null;
-let popupBucarest: Popup|null;
-let popupBangalore: Popup|null;
-let popupStade: Popup|null;
-let popupLille: Popup|null;
-let popupParis: Popup|null;
-let popupSakura: Popup|null;
 let link: any;
+
+let root: string
 
 const MESSAGE = {
     EN: {
         TRIGGER: "Press SPACE or touch here to ",
         DOC: "read the document.",
         VIDEO: "watch the video.",
-        SITE: "open the website.",
+        WEBSITE: "open the website.",
+        OBJECT: "discover the hidden object.",
     },
     FR: {
         TRIGGER: "Appuyez sur ESPACE ou touchez ici pour ",
         DOC: "lire le document.",
         VIDEO: "regarder la vidéo.",
-        SITE: "ouvrir le site web.",
+        WEBSITE: "ouvrir le site web.",
+        OBJECT: "découvrir l'objet caché.",
     }
 }
-
-const CONTENT: { AREA: string, URL?: { EN: string, FR: string }|null, MESSAGE?: { EN: string, FR: string }|null }[] = [
+const CONTENT: any[] = [
      // Websites
     {
         AREA: "gfl-step1-1",
-        URL: {
-            EN:"https://workadventu.re/",
-            FR:"https://workadventu.re/"
-        },
+        URL: "to-config"
     },
     {
         AREA: "gfl-step1-2",
-        URL: {
-            EN:"https://workadventu.re/",
-            FR:"https://workadventu.re/"
-        },
+        URL: "to-config"
+    },
+    {
+        AREA: "gfl-step2-1",
+        URL: "to-config"
+    },
+    {
+        AREA: "gfl-step2-2",
+        URL: "to-config"
+    },
+    {
+        AREA: "gfl-step3-1",
+        URL: "to-config"
+    },
+    {
+        AREA: "gfl-step3-2",
+        URL: "to-config"
+    },
+    {
+        AREA: "gfl-step3-3",
+        URL: "to-config"
     },
 
     // Popups
@@ -57,14 +68,13 @@ const CONTENT: { AREA: string, URL?: { EN: string, FR: string }|null, MESSAGE?: 
     }
 ]
 
-type ContentType = 'SITE' | 'DOC' | 'VIDEO'
+type ContentType = 'DOC' | 'VIDEO' | 'WEBSITE' | 'OBJECT'
 type Lang = 'EN' | 'FR'
-type Interaction = 'POPUP' | 'WEBSITE'
+type Interaction = 'POPUP' | 'WEBSITE' | 'SCAVENGER'
 type ContentArea = {
     area: string,
     interaction: Interaction,
-    message: string,
-    url?: string|null
+    message: string
 }
 
 let lang: Lang
@@ -133,96 +143,6 @@ WA.onInit().then(() => {
         popupStand = null;
     });
 
-    WA.room.area.onEnter("zoneBucarest").subscribe(() => {
-        popupBucarest = WA.ui.openPopup("popupBucarest", "TO COMPLETE" as string, [{
-                label: "Fermer",
-                className: "primary",
-                callback: () => {
-                    popupBucarest?.close();
-                    popupBucarest = null;
-                }
-            }]);
-    });
-    WA.room.area.onLeave("zoneBucarest").subscribe(() => {
-        popupBucarest?.close();
-        popupBucarest = null;
-    });
-
-    WA.room.area.onEnter("zoneBangalore").subscribe(() => {
-        popupBangalore = WA.ui.openPopup("popupBangalore", "TO COMPLETE" as string, [{
-                label: "Fermer",
-                className: "primary",
-                callback: () => {
-                    popupBangalore?.close();
-                    popupBangalore = null;
-                }
-            }]);
-    });
-    WA.room.area.onLeave("zoneBangalore").subscribe(() => {
-        popupBangalore?.close();
-        popupBangalore = null;
-    });
-
-    WA.room.area.onEnter("zoneStade").subscribe(() => {
-        popupStade = WA.ui.openPopup("popupStade", "TO COMPLETE" as string, [{
-                label: "Fermer",
-                className: "primary",
-                callback: () => {
-                    popupStade?.close();
-                    popupStade = null;
-                }
-            }]);
-    });
-    WA.room.area.onLeave("zoneStade").subscribe(() => {
-        popupStade?.close();
-        popupStade = null;
-    });
-
-    WA.room.area.onEnter("zoneLille").subscribe(() => {
-        popupLille = WA.ui.openPopup("popupLille", "TO COMPLETE" as string, [{
-                label: "Fermer",
-                className: "primary",
-                callback: () => {
-                    popupLille?.close();
-                    popupLille = null;
-                }
-            }]);
-    });
-    WA.room.area.onLeave("zoneLille").subscribe(() => {
-        popupLille?.close();
-        popupLille = null;
-    });
-
-    WA.room.area.onEnter("zoneParis").subscribe(() => {
-        popupParis = WA.ui.openPopup("popupParis", "TO COMPLETE" as string, [{
-                label: "Fermer",
-                className: "primary",
-                callback: () => {
-                    popupParis?.close();
-                    popupParis = null;
-                }
-            }]);
-    });
-    WA.room.area.onLeave("zoneParis").subscribe(() => {
-        popupParis?.close();
-        popupParis = null;
-    });
-
-    WA.room.area.onEnter("zoneSakura").subscribe(() => {
-        popupSakura = WA.ui.openPopup("popupSakura", "TO COMPLETE" as string, [{
-                label: "Fermer",
-                className: "primary",
-                callback: () => {
-                    popupSakura?.close();
-                    popupSakura = null;
-                }
-            }]);
-    });
-    WA.room.area.onLeave("zoneSakura").subscribe(() => {
-        popupSakura?.close();
-        popupSakura = null;
-    });
-
     // GFL Cinema doors
     listenDoor('Room1')
     listenDoor('Room2')
@@ -233,25 +153,30 @@ WA.onInit().then(() => {
     bootstrapExtra().then(async () => {
         console.log('Scripting API Extra ready');
 
+        const mapUrl = WA.room.mapURL
+        root = mapUrl.substring(0, mapUrl.lastIndexOf("/"))
+
         const areasToTranslate = await setupTranslation()
 
         for (const [area, contentType] of areasToTranslate.entries()) {
             let contentArea: ContentArea
             let interaction: Interaction = "WEBSITE"
-            let url = null
             let message = ""
 
-            let c = CONTENT.find(item => item.AREA === area);
+            let c = CONTENT.find(item => item.AREA === area)
             if (c && c.URL) {
-                url = c.URL[lang]
                 message = MESSAGE[lang].TRIGGER
                 message += MESSAGE[lang][contentType]
             } else if (c && c.MESSAGE) {
                 interaction = "POPUP"
                 message = c.MESSAGE[lang]
+            } else {
+                interaction = "SCAVENGER"
+                message = MESSAGE[lang].TRIGGER
+                message += MESSAGE[lang][contentType]
             }
-            
-            contentArea = { area, interaction, message, url }
+           
+            contentArea = { area, interaction, message }
             listenArea(contentArea)
         }
 
@@ -313,21 +238,49 @@ function setLangLayers(layers: string[]) {
 }
 
 function listenArea(contentArea: ContentArea) {
-    let website: CoWebsite
-    let triggerMessage: ActionMessage
+    let website: CoWebsite|null
+    let triggerMessage: ActionMessage|null
     let popup: Popup|null
+    let modal: any
 
     WA.room.area.onEnter(contentArea.area).subscribe(() => {
         if(contentArea.interaction === 'WEBSITE') {
+            const url = WA.state.loadVariable(`${contentArea.area}-${lang}-config`) as string
+
+            if (WA.player.tags.includes('admin')) {
+                WA.ui.actionBar.addButton({
+                    id: 'configure-btn',
+                    label: lang === 'FR' ? "Configurer" : "Configure",
+                    callback: () => {    
+                        modal = WA.ui.modal.openModal({
+                            title: lang === 'FR' ? "Page d'administration" : "Administration page",
+                            src: root + `/administration/index.html?area=${contentArea.area}`,
+                            allowApi: true,
+                            allow: "microphone; camera",
+                            position: "center",
+                        }, () => WA.ui.modal.closeModal())
+                    }
+                })
+            }
+           
+            triggerMessage = WA.ui.displayActionMessage({
+                message: contentArea.message,
+                callback: () => WA.nav.openTab(url)
+            })
+        } else if(contentArea.interaction === 'SCAVENGER') {
             triggerMessage = WA.ui.displayActionMessage({
                 message: contentArea.message,
                 callback: async () => {
-                    if (contentArea.url)
-                        website = await WA.nav.openCoWebSite(contentArea.url)
+                    modal = WA.ui.modal.openModal({
+                        title: lang === 'FR' ? "Vous avez trouvé un nouvel objet caché !" : "You found a new hidden object!",
+                        src: root + `/scavenger/index.html?lang=${lang}&area=${contentArea.area}`,
+                        allowApi: true,
+                        allow: "microphone; camera",
+                        position: "center",
+                    }, () => WA.ui.modal.closeModal())
                 }
             })
         } else if (contentArea.interaction === 'POPUP') {
-            console.log('ENTER contentArea.area',contentArea.area)
             popup = WA.ui.openPopup(
                 contentArea.area + "Popup",
                 contentArea.message,
@@ -342,14 +295,25 @@ function listenArea(contentArea: ContentArea) {
             )
         }
     })
+
     WA.room.area.onLeave(contentArea.area).subscribe(() => {
-        if(contentArea.interaction === 'WEBSITE') {
-            triggerMessage.remove()
-            website.close()
-        } else if (contentArea.interaction === 'POPUP') {
-            popup?.close()
-            popup = null
+        if (WA.player.tags.includes('admin')) {
+            WA.ui.actionBar.removeButton('configure-btn')
         }
+
+        triggerMessage?.remove()
+        triggerMessage = null
+
+        website?.close()
+        website = null
+        
+        if (modal) {
+            WA.ui.modal.closeModal()
+            modal = null
+        }
+
+        popup?.close()
+        popup = null
     });
 }
 

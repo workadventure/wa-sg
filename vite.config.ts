@@ -27,6 +27,8 @@ export default defineConfig({
         rollupOptions: {
             input: {
                 index: "./index.html",
+                scavenger: "./scavenger/index.html",
+                administration: "./administration/index.html",
                 ...getMapsScripts(maps),
             },
         },
