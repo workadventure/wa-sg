@@ -151,7 +151,7 @@ WA.onInit().then(() => {
 
     // The line below bootstraps the Scripting API Extra library that adds a number of advanced properties/features to WorkAdventure
     bootstrapExtra().then(async () => {
-        console.log('Scripting API Extra ready');
+        console.log('Scripting API Extra ready')
 
         const mapUrl = WA.room.mapURL
         root = mapUrl.substring(0, mapUrl.lastIndexOf("/"))

@@ -32,16 +32,9 @@ WA.onInit().then(() => {
                     WA.state.saveVariable(`${area}-EN-config`, inputEN.value).catch(e => console.error('Something went wrong while saving variable', e))
                     WA.state.saveVariable(`${area}-FR-config`, inputFR.value).catch(e => console.error('Something went wrong while saving variable', e))
 
-                    if (inputEN.value === WA.state.loadVariable(`${area}-EN-config`)) {
-                        checkEN.innerHTML = "&check;"
-                    } else {
-                        checkEN.innerHTML = "&cross;"
-                    }
-                    if (inputFR.value === WA.state.loadVariable(`${area}-FR-config`)) {
-                        checkFR.innerHTML = "&check;"
-                    } else {
-                        checkEN.innerHTML = "&cross;"
-                    }
+                    // Check that the input value and the variable value are the same after saving the variable
+                    checkEN.innerHTML = inputEN.value === WA.state.loadVariable(`${area}-EN-config`) ? "&check;" : "&cross;"
+                    checkFR.innerHTML = inputFR.value === WA.state.loadVariable(`${area}-FR-config`) ? "&check;" : "&cross;"
                 })
             }
         }).catch(e => console.error(e));
