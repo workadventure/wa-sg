@@ -19,7 +19,6 @@
   padding-bottom: var(--dl-space-space-fourunits);
   background-size: cover;
   justify-content: center;
-  background-image: url('https://images.unsplash.com/photo-1485628390555-1a7bd503f9fe?ixid=Mnw5MTMyMXwwfDF8c2VhcmNofDE3fHxhcmNoaXRlY3R1cmUlMjBtaW5pbWFsfGVufDB8fHx8MTYyNjE4NDA0Mg&ixlib=rb-1.2.1&w=1500');
   background-position: center;
 }
 .home-text {
