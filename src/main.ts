@@ -108,7 +108,7 @@ WA.onInit().then(() => {
         imageSrc: 'https://hugoaverty.github.io/map-overview/img/map.svg',
         toolTip: 'Map overview',
         callback: () => {
-            WA.nav.openCoWebSite("Mapoverview.svg");
+            WA.nav.openCoWebSite("https://workadventure.github.io/mapView-sg/");
         }
     });
 
