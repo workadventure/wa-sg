@@ -121,8 +121,8 @@ WA.onInit().then(() => {
             AREA: "scavenger-object15",
             TITLE: "Isabelle PETIT",
             BODY: {
-                EN:"TODO",
-                FR:"À FAIRE"
+                EN:"Isabelle loves all forms of visual art, especially contemporary art.",
+                FR:"Isabelle adore toutes les formes d'art visuel et en particulier l’art contemporain."
             },
         },
     ]
