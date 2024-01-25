@@ -136,61 +136,70 @@ WA.onInit().then(async () => {
     const area = url.searchParams.get("area")
     const object = OBJECTS.find(item =>`scavenger-object${item.ID}` === area)
 
-    const title = document.getElementById("scavenger-title") as HTMLElement
-    const body = document.getElementById("scavenger-body") as HTMLElement
-    const image = document.getElementById("scavenger-image") as HTMLImageElement
-    let check = document.getElementById("check") as HTMLElement
+    window.addEventListener('DOMContentLoaded', async () => {
+        console.log("DEBUG: DOMContentLoaded")
 
-    // QUEST
-    
-    // Bronze badge requires 30 XP
-    // Easy to find items (5 items):
-    // XP per easy item: 30 / 5 = 6 XP
+        const title = document.getElementById("scavenger-title") as HTMLElement
+        const body = document.getElementById("scavenger-body") as HTMLElement
+        const image = document.getElementById("scavenger-image") as HTMLImageElement
+        let check = document.getElementById("check") as HTMLElement
 
-    // Silver badge requires 72 XP
-    // Moderate items (7 items):
-    // XP per moderate item: (72 - 30) / 7 = 42 / 7 = 6 XP
+        // QUEST
+        
+        // Bronze badge requires 30 XP
+        // Easy to find items (5 items):
+        // XP per easy item: 30 / 5 = 6 XP
 
-    // Gold badge requires 90 XP
-    // Hard to find items (3 items):
-    // XP per hard item: (90 - 72) / 3 = 18 / 3 = 6 XP
+        // Silver badge requires 72 XP
+        // Moderate items (7 items):
+        // XP per moderate item: (72 - 30) / 7 = 42 / 7 = 6 XP
 
-    // Since they all give the same amount of XP we will just give 6 XP every time a new object is found, just to simplify the script.
-    const QUEST_KEY = "sg-onboarding-scavenger-hunt"
-    const xpPerItem = 6
+        // Gold badge requires 90 XP
+        // Hard to find items (3 items):
+        // XP per hard item: (90 - 72) / 3 = 18 / 3 = 6 XP
 
-    // show the object found by the user
-    if (object && lang && title && body && image) {
-        const itemKey = `scavenger-object${object.ID}`
-        title.innerHTML = object.TITLE
-        body.innerHTML = object.BODY[lang]
-        image.src = `./images/${itemKey}.jpg`
+        // Since they all give the same amount of XP we will just give 6 XP every time a new object is found, just to simplify the script.
+        const QUEST_KEY = "sg-onboarding-scavenger-hunt"
+        const xpPerItem = 6
 
-        if (!WA.player.state.hasVariable(itemKey)) {
-            // player found the item for the first time
-            await WA.player.state.saveVariable(itemKey, true, {
-                public: false,
-                persist: true,
-                ttl: 24 * 3600,
-                scope: "world"
-            })
+        // show the object found by the user
+        if (object && lang && title && body && image && check) {
+            console.log("DEBUG: DOM objects defined")
+            const itemKey = `scavenger-object${object.ID}`
+            title.innerHTML = object.TITLE
+            body.innerHTML = object.BODY[lang]
+            image.src = `./images/${itemKey}.jpg`
 
-            if (WA.player.state.loadVariable(itemKey) === true) {
-                // if the variable is actually set, grant the user some XP
-                await levelUp(QUEST_KEY, xpPerItem).catch(e => console.error(e))
-                console.log(`"Scavenger": Discovered item ${object.ID}. ${xpPerItem} XP awarded!`)
+            if (!WA.player.state.hasVariable(itemKey)) {
+                console.log("DEBUG: player do not have variable", itemKey)
+                // player found the item for the first time
+                await WA.player.state.saveVariable(itemKey, true, {
+                    public: false,
+                    persist: true,
+                    ttl: 24 * 3600,
+                    scope: "world"
+                })
+                console.log("DEBUG: variable saved to 'true'")
+
+                if (WA.player.state.loadVariable(itemKey) === true) {
+                    console.log("DEBUG: variable value is actually 'true', granting XP...")
+                    // if the variable is actually set, grant the user some XP
+                    await levelUp(QUEST_KEY, xpPerItem).catch(e => console.error('Something went wrong while granting XP', e))
+                    console.log("DEBUG: XP granted")
+                    console.log(`"DEBUG": Discovered item ${object.ID}. ${xpPerItem} XP awarded!`)
+                } else {
+                    console.error('"DEBUG": variable has been saved but its value was not loaded properly.')
+                }
             } else {
-                console.error('"Scavenger": variable has been saved but its value was not loaded properly.')
+                // player found the item but not for the first time
+                check.style.display = "inline-block"
+                console.log(`"DEBUG": You've already discovered item ${object.ID}. No additional XP awarded.`);
             }
         } else {
-            // player found the item but not for the first time
-            check.style.display = "inline-block"
-            console.log(`"Scavenger": You've already discovered item ${object.ID}. No additional XP awarded.`)
+            // show a 404 error page
+            window.location.href = root + "/scavenger/404.html"
         }
-    } else {
-        // show a 404 error page
-        window.location.href = root + "/scavenger/404.html"
-    }
+    })
 })
 
 export {}
