@@ -7,9 +7,10 @@ console.info('"Administration" script started successfully')
 // Waiting for the API to be ready
 WA.onInit().then(() => {
     console.log("DEBUG: onInit")
-    // Waiting for the DOM to be ready
-    window.addEventListener('DOMContentLoaded', async () => {
-        console.log("DEBUG: DOMContentLoaded")
+
+    async function process() {
+        console.log("DEBUG: process")
+
         const url = new URL(window.location.toString())
         const area = url.searchParams.get("area")
     
@@ -56,9 +57,16 @@ WA.onInit().then(() => {
                     checkFR.innerHTML = inputFR.value === WA.state.loadVariable(`${area}-FR-config`) ? "&check;" : "&cross;"
                 }
             }
-        }).catch(e => console.error(e));
-    })
+        }).catch(e => console.error(e))
+    }
 
+    if (document.readyState === "loading") {
+        console.log("DEBUG: Loading hasn't finished yet...")
+        document.addEventListener("DOMContentLoaded", process)
+    } else {
+        console.log("DEBUG: `DOMContentLoaded` has already fired")
+        process()
+    }        
 }).catch(e => console.error(e));
 
 export {}
