@@ -172,27 +172,36 @@ WA.onInit().then(async () => {
 
             if (!WA.player.state.hasVariable(itemKey)) {
                 console.log("DEBUG: player do not have variable", itemKey)
+
                 // player found the item for the first time
-                await WA.player.state.saveVariable(itemKey, true, {
-                    public: false,
-                    persist: true,
-                    ttl: 24 * 3600,
-                    scope: "world"
-                })
-                console.log("DEBUG: variable saved to 'true'")
+                try {
+                    await WA.player.state.saveVariable(itemKey, true, {
+                        public: false,
+                        persist: true,
+                        ttl: 24 * 3600,
+                        scope: "world"
+                    })
+                    console.log("DEBUG: variable saved to 'true'")
+                } catch (error) {
+                    console.error('Error saving variable:', error)
+                    return
+                }
 
                 if (WA.player.state.loadVariable(itemKey) === true) {
                     console.log("DEBUG: variable value is actually 'true', granting XP...")
-                    // if the variable is actually set, grant the user some XP
-                    await levelUp(QUEST_KEY, xpPerItem).catch(e => console.error('Something went wrong while granting XP', e))
-                    console.log("DEBUG: XP granted")
-                    console.log(`"DEBUG": Discovered item ${object.ID}. ${xpPerItem} XP awarded!`)
+
+                    try {
+                        await levelUp(QUEST_KEY, xpPerItem)
+                        console.log(`"DEBUG": Discovered item ${object.ID}. ${xpPerItem} XP awarded!`)
+                    } catch (error) {
+                        console.error('Error granting XP:', error)
+                    }
                 } else {
                     console.error('"DEBUG": variable has been saved but its value was not loaded properly.')
                 }
             } else {
                 // player found the item but not for the first time
-                check.style.display = "inline-block"
+                check.innerHTML = "&check;"
                 console.log(`"DEBUG": You've already discovered item ${object.ID}. No additional XP awarded.`);
             }
         } else {

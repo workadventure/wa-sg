@@ -43,14 +43,18 @@ WA.onInit().then(() => {
 
             async function saveVariables() {
                 console.log("DEBUG: saving variables...")
-                await WA.state.saveVariable(`${area}-EN-config`, inputEN.value).catch(e => console.error('Something went wrong while saving variable', e))
-                await WA.state.saveVariable(`${area}-FR-config`, inputFR.value).catch(e => console.error('Something went wrong while saving variable', e))
-              
-                console.log("DEBUG: variables saved")
+                try {
+                    await WA.state.saveVariable(`${area}-EN-config`, inputEN.value).catch(e => console.error('Something went wrong while saving variable', e))
+                    await WA.state.saveVariable(`${area}-FR-config`, inputFR.value).catch(e => console.error('Something went wrong while saving variable', e))
+                    console.log("DEBUG: variables saved")
+                } catch (error) {
+                    console.error('Error saving variables:', error)
+                }
+           
+                console.log("DEBUG: input feedback")
                 // Check that the input value and the variable value are the same after saving the variable
                 checkEN.innerHTML = inputEN.value === WA.state.loadVariable(`${area}-EN-config`) ? "&check;" : "&cross;"
                 checkFR.innerHTML = inputFR.value === WA.state.loadVariable(`${area}-FR-config`) ? "&check;" : "&cross;"
-                console.log("DEBUG: input feedback")
             }
         }).catch(e => console.error(e));
     })
