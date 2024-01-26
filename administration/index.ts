@@ -49,12 +49,12 @@ WA.onInit().then(() => {
                     console.log("DEBUG: variables saved")
                 } catch (error) {
                     console.error('Error saving variables:', error)
+                } finally {
+                    console.log("DEBUG: input feedback")
+                    // Check that the input value and the variable value are the same after saving the variable
+                    checkEN.innerHTML = inputEN.value === WA.state.loadVariable(`${area}-EN-config`) ? "&check;" : "&cross;"
+                    checkFR.innerHTML = inputFR.value === WA.state.loadVariable(`${area}-FR-config`) ? "&check;" : "&cross;"
                 }
-           
-                console.log("DEBUG: input feedback")
-                // Check that the input value and the variable value are the same after saving the variable
-                checkEN.innerHTML = inputEN.value === WA.state.loadVariable(`${area}-EN-config`) ? "&check;" : "&cross;"
-                checkFR.innerHTML = inputFR.value === WA.state.loadVariable(`${area}-FR-config`) ? "&check;" : "&cross;"
             }
         }).catch(e => console.error(e));
     })
