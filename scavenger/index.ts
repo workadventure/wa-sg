@@ -4,7 +4,8 @@ import { levelUp } from "@workadventure/quests";
 console.info('"Scavenger" script started successfully')
 
 // Waiting for the API to be ready
-WA.onInit().then(async () => {
+WA.onInit().then(() => {
+    console.log("DEBUG: onInit")
     const OBJECTS: { ID: number, TITLE: string, BODY: { EN: string, FR: string} }[] = [
         {
             ID: 1,
