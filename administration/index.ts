@@ -29,7 +29,6 @@ WA.onInit().then(() => {
     
             // we initialize the 2 fields values and prepare the submission
             if (inputEN && inputFR && area) {
-                console.log("DEBUG: bootstrapExtra")
                 inputEN.value = urlEN
                 inputFR.value = urlFR
                 console.log("DEBUG: inputEN.value",inputEN.value)
