@@ -59,6 +59,14 @@ const CONTENT: any[] = [
         AREA: "gfl-step3-3",
         URL: "to-config"
     },
+    {
+        AREA: "gfl-feedback",
+        URL: "to-config"
+    },
+    {
+        AREA: "gfl-quiz",
+        URL: "to-config"
+    },
 
     // GFL Basics content
     {
@@ -103,6 +111,14 @@ const CONTENT: any[] = [
     },
     {
         AREA: "gfl-basics-step5-3",
+        URL: "to-config"
+    },
+    {
+        AREA: "gfl-basics-feedback",
+        URL: "to-config"
+    },
+    {
+        AREA: "gfl-basics-quiz",
         URL: "to-config"
     },
 
