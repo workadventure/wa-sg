@@ -1973,12 +1973,12 @@
         {
          "name":"mapImage",
          "type":"string",
-         "value":"gfl.png"
+         "value":"gfl-basics.png"
         }, 
         {
          "name":"mapName",
          "type":"string",
-         "value":"GFL"
+         "value":"GFL Basics"
         }, 
         {
          "name":"script",
