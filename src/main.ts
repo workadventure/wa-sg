@@ -30,7 +30,7 @@ const MESSAGE = {
     }
 }
 const CONTENT: any[] = [
-     // Websites
+    // GFL content
     {
         AREA: "gfl-step1-1",
         URL: "to-config"
@@ -57,6 +57,52 @@ const CONTENT: any[] = [
     },
     {
         AREA: "gfl-step3-3",
+        URL: "to-config"
+    },
+
+    // GFL Basics content
+    {
+        AREA: "gfl-basics-step1-1",
+        URL: "to-config"
+    },
+    {
+        AREA: "gfl-basics-step1-2",
+        URL: "to-config"
+    },
+    {
+        AREA: "gfl-basics-step2-1",
+        URL: "to-config"
+    },
+    {
+        AREA: "gfl-basics-step2-2",
+        URL: "to-config"
+    },
+    {
+        AREA: "gfl-basics-step3-1",
+        URL: "to-config"
+    },
+    {
+        AREA: "gfl-basics-step3-2",
+        URL: "to-config"
+    },
+    {
+        AREA: "gfl-basics-step4-1",
+        URL: "to-config"
+    },
+    {
+        AREA: "gfl-basics-step4-2",
+        URL: "to-config"
+    },
+    {
+        AREA: "gfl-basics-step5-1",
+        URL: "to-config"
+    },
+    {
+        AREA: "gfl-basics-step5-2",
+        URL: "to-config"
+    },
+    {
+        AREA: "gfl-basics-step5-3",
         URL: "to-config"
     },
 
