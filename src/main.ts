@@ -6,9 +6,6 @@ import { getLayersMap, Properties } from "@workadventure/scripting-api-extra/dis
 
 console.info('Script started successfully');
 
-let popupStand: Popup|null;
-let link: any;
-
 let root: string
 
 const MESSAGE = {
@@ -143,64 +140,43 @@ let lang: Lang
 WA.onInit().then(() => {
     console.log('Player tags: ', WA.player.tags);
 
+    const mapUrl = WA.room.mapURL
+    root = mapUrl.substring(0, mapUrl.lastIndexOf("/"))
+
     const userLanguage = WA.player.language ? WA.player.language : navigator.language
     // Set the initial language based on the user's preference
     lang = userLanguage.startsWith('fr') ? 'FR' : 'EN'
 
     WA.ui.actionBar.addButton({
         id: 'help-btn',
-        // @ts-ignore
         type: 'action',
-        imageSrc: 'https://svgur.com/i/10Sh.svg',
-        toolTip: 'Help',
+        imageSrc: root + '/help.svg',
+        toolTip: lang === 'FR' ? "Comment utiliser WorkAdventure" : "How to use WorkAdventure",
         callback: () => {
-            link = WA.state.lnk_stand_en;
-            WA.nav.openCoWebSite(link);
+            WA.ui.modal.openModal({
+                title: "Help",
+                src: 'https://workadventu.re',
+                allowApi: false,
+                allow: "microphone; camera",
+                position: "center",
+            }, () => WA.ui.modal.closeModal())
         }
     });
 
     WA.ui.actionBar.addButton({
-        id: 'mapoverview-btn',
-        // @ts-ignore
+        id: 'plan-btn',
         type: 'action',
-        imageSrc: 'https://hugoaverty.github.io/map-overview/img/map.svg',
-        toolTip: 'Map overview',
+        imageSrc: root + '/map-plan.svg',
+        toolTip: lang === 'FR' ? "Ouvrir le plan" : "Open the plan",
         callback: () => {
-            WA.nav.openCoWebSite("https://workadventure.github.io/mapView-sg/");
+            WA.ui.modal.openModal({
+                title: "Plan",
+                src: 'https://workadventu.re',
+                allowApi: false,
+                allow: "microphone; camera",
+                position: "center",
+            }, () => WA.ui.modal.closeModal())
         }
-    });
-
-
-    WA.room.area.onEnter("standZone").subscribe(() => {
-        if(popupStand) return;
-
-        if(WA.player.language == "fr-FR") {
-            popupStand = WA.ui.openPopup("popupStand", WA.state.txt_popup_stand_fr as string, [{
-                label: WA.state.cta_popup_stand_fr as string,
-                className: "primary",
-                callback: () => {
-                    link = WA.state.lnk_stand_fr;
-                    WA.nav.openCoWebSite(link);
-                    popupStand?.close();
-                    popupStand = null;
-                }
-            }]);
-        } else {
-            popupStand = WA.ui.openPopup("popupStand", WA.state.txt_popup_stand_en as string, [{
-                label: WA.state.cta_popup_stand_en as string,
-                className: "primary",
-                callback: () => {
-                    link = WA.state.lnk_stand_en;
-                    WA.nav.openCoWebSite(link);
-                    popupStand?.close();
-                    popupStand = null;
-                }
-            }]);
-        }
-    });
-    WA.room.area.onLeave("standZone").subscribe(() => {
-        popupStand?.close();
-        popupStand = null;
     });
 
     // GFL Cinema doors
@@ -212,9 +188,6 @@ WA.onInit().then(() => {
     // The line below bootstraps the Scripting API Extra library that adds a number of advanced properties/features to WorkAdventure
     bootstrapExtra().then(async () => {
         console.log('Scripting API Extra ready')
-
-        const mapUrl = WA.room.mapURL
-        root = mapUrl.substring(0, mapUrl.lastIndexOf("/"))
 
         const areasToTranslate = await setupTranslation()
 
