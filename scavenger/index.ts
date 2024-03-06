@@ -99,7 +99,7 @@ const OBJECTS: { ID: number, TITLE: string, BODY: { EN: string, FR: string} }[] 
         TITLE: "Fabienne POUSSOU",
         BODY: {
             EN:"'Let her dance'. Fabienne is the biggest Dalida fan GFL has ever known.",
-            FR:'"Laissez-la danser". Fabienne est la plus grande fan de Dalida que GFL ai connu.'
+            FR:'"Laissez-la danser". Fabienne est la plus grande fan de Dalida que GFL ait connu.'
         },
     },
     {
