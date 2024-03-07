@@ -8,7 +8,7 @@ const DIALOGUES: { NAME: string, MESSAGE: { EN: string, FR: string } }[] = [
     MESSAGE: {
       EN: `Hello! I'm Camille, an expert in GCA (Credit and Activity Management) at Société Générale. My role involves overseeing the management of credits and financial activities within the company. I ensure that credit decisions are made judiciously and that financial activities contribute to the overall financial health of the company.
       Head to the GCA room to learn more!`,
-      FR: `<strong>Bonjour !</strong> Je suis Camille, experte en GCA (Gestion des Crédits et des Activités)  à la Société Générale. Mon rôle consiste à superviser la gestion des crédits et des activités financières au sein de l'entreprise. Je m'assure que les décisions de crédit sont prises de manière judicieuse et que les activités financières contribuent à la santé financière globale de l'entreprise.
+      FR: `Bonjour ! Je suis Camille, experte en GCA (Gestion des Crédits et des Activités)  à la Société Générale. Mon rôle consiste à superviser la gestion des crédits et des activités financières au sein de l'entreprise. Je m'assure que les décisions de crédit sont prises de manière judicieuse et que les activités financières contribuent à la santé financière globale de l'entreprise.
       Rendez-vous dans la salle GCA pour en apprendre plus !`,
     },
   },
