@@ -1,7 +1,7 @@
 /// <reference types="@workadventure/iframe-api-typings" />
 
 import { bootstrapExtra } from "@workadventure/scripting-api-extra";
-import { ActionMessage, CoWebsite, Popup } from "@workadventure/iframe-api-typings";
+import { ActionMessage, CoWebsite, CreateUIWebsiteEvent, Popup, UIWebsite } from "@workadventure/iframe-api-typings";
 import { getLayersMap, Properties } from "@workadventure/scripting-api-extra/dist";
 
 console.info('Script started successfully');
@@ -15,7 +15,8 @@ const MESSAGE = {
         VIDEO: "watch the video.",
         WEBSITE: "open the website.",
         OBJECT: "discover the hidden object.",
-        UNDEFINED: "The URL is not defined."
+        DIALOGUE: "talk with ",
+        UNDEFINED: "The URL is not defined.",
     },
     FR: {
         TRIGGER: "Appuyez sur ESPACE ou touchez ici pour ",
@@ -23,7 +24,8 @@ const MESSAGE = {
         VIDEO: "regarder la vidéo.",
         WEBSITE: "ouvrir le site web.",
         OBJECT: "découvrir l'objet caché.",
-        UNDEFINED: "L'URL n'est pas définie."
+        DIALOGUE: "parler avec ",
+        UNDEFINED: "L'URL n'est pas définie.",
     }
 }
 const CONTENT: any[] = [
@@ -115,19 +117,28 @@ const CONTENT: any[] = [
         URL: "to-config"
     },
 
-    // Popups
+    // Dialogue
     {
-        AREA: "replayInformation",
-        MESSAGE: {
-            EN: "Welcome to the GFL cinema.\nYou can watch the replays in one of the 4 rooms upstairs.",
-            FR: "Bienvenue dans le cinéma GFL.\nVous pouvez aller visionner les retransmissions dans une des 4 salles à l'étage."
-        },
-    }
+        AREA: "Camille",
+        NPC: "config-in-dialogue-box-website",
+    },
+    {
+        AREA: "Victor",
+        NPC: "config-in-dialogue-box-website",
+    },
+    {
+        AREA: "Lukas",
+        NPC: "config-in-dialogue-box-website",
+    },
+    {
+        AREA: "Sara",
+        NPC: "config-in-dialogue-box-website",
+    },
 ]
 
-type ContentType = 'DOC' | 'VIDEO' | 'WEBSITE' | 'OBJECT'
+type ContentType = 'DOC' | 'VIDEO' | 'WEBSITE' | 'OBJECT' | 'DIALOGUE'
 type Lang = 'EN' | 'FR'
-type Interaction = 'POPUP' | 'WEBSITE' | 'SCAVENGER'
+type Interaction = 'WEBSITE' | 'SCAVENGER' | 'NPC'
 type ContentArea = {
     area: string,
     interaction: Interaction,
@@ -200,9 +211,11 @@ WA.onInit().then(() => {
             if (c && c.URL) {
                 message = MESSAGE[lang].TRIGGER
                 message += MESSAGE[lang][contentType]
-            } else if (c && c.MESSAGE) {
-                interaction = "POPUP"
-                message = c.MESSAGE[lang]
+            } else if (c && c.NPC) {
+                interaction = "NPC"
+                message = MESSAGE[lang].TRIGGER
+                message += MESSAGE[lang][contentType]
+                message += area + "."
             } else {
                 interaction = "SCAVENGER"
                 message = MESSAGE[lang].TRIGGER
@@ -273,8 +286,8 @@ function setLangLayers(layers: string[]) {
 function listenArea(contentArea: ContentArea) {
     let website: CoWebsite|null
     let triggerMessage: ActionMessage|null
-    let popup: Popup|null
     let modal: any
+    let dialogueBox: UIWebsite|null
 
     WA.room.area.onEnter(contentArea.area).subscribe(() => {
         if(contentArea.interaction === 'WEBSITE') {
@@ -313,19 +326,29 @@ function listenArea(contentArea: ContentArea) {
                     }, () => WA.ui.modal.closeModal())
                 }
             })
-        } else if (contentArea.interaction === 'POPUP') {
-            popup = WA.ui.openPopup(
-                contentArea.area + "Popup",
-                contentArea.message,
-                [{
-                    label: lang === 'FR' ? "Fermer" : "Close",
-                    className: "normal",
-                    callback: () => {
-                        popup?.close();
-                        popup = null;
-                    }
-                }]
-            )
+        } else if (contentArea.interaction === 'NPC') {
+            triggerMessage = WA.ui.displayActionMessage({
+                message: contentArea.message,
+                callback: async () => {
+                    dialogueBox = await WA.ui.website.open({
+                        url:  root + `/dialogue-box/index.html?lang=${lang}&name=${contentArea.area}`,
+                        visible: true,
+                        allowApi: false,
+                        allowPolicy: "",   // The list of feature policies allowed
+                        position: {
+                            vertical: "bottom",
+                            horizontal: "middle",
+                        },
+                        size: {            // Size on the UI (available units: px|em|%|cm|in|pc|pt|mm|ex|vw|vh|rem and others values auto|inherit)
+                            height: "120px",
+                            width: "650px",
+                        },
+                        margin: {              // Website margin (available units: px|em|%|cm|in|pc|pt|mm|ex|vw|vh|rem and others values auto|inherit)
+                            bottom: "70px",
+                        },
+                    })
+                }
+            })
         }
     })
 
@@ -345,8 +368,8 @@ function listenArea(contentArea: ContentArea) {
             modal = null
         }
 
-        popup?.close()
-        popup = null
+        dialogueBox?.close()
+        dialogueBox = null
     });
 }
 

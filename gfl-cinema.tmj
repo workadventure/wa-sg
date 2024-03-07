@@ -948,10 +948,20 @@
                  "y":64
                 }, 
                 {
-                 "height":96,
+                 "height":43.2954545454545,
                  "id":28,
-                 "name":"replayInformation",
+                 "name":"Camille",
                  "properties":[
+                        {
+                         "name":"contentType",
+                         "type":"string",
+                         "value":"DIALOGUE"
+                        }, 
+                        {
+                         "name":"silent",
+                         "type":"bool",
+                         "value":true
+                        }, 
                         {
                          "name":"translate",
                          "type":"bool",
@@ -960,20 +970,9 @@
                  "rotation":0,
                  "type":"area",
                  "visible":true,
-                 "width":448,
-                 "x":416,
-                 "y":576
-                }, 
-                {
-                 "height":120,
-                 "id":29,
-                 "name":"replayInformationPopup",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":344,
-                 "x":473.333333333333,
-                 "y":447
+                 "width":55.4924242424242,
+                 "x":468.166666666667,
+                 "y":576.166666666667
                 }, 
                 {
                  "height":37.3333333333333,
@@ -1018,6 +1017,87 @@
                  "width":64,
                  "x":1147.75,
                  "y":881.5
+                }, 
+                {
+                 "height":43.2955,
+                 "id":32,
+                 "name":"Victor",
+                 "properties":[
+                        {
+                         "name":"contentType",
+                         "type":"string",
+                         "value":"DIALOGUE"
+                        }, 
+                        {
+                         "name":"silent",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"translate",
+                         "type":"bool",
+                         "value":true
+                        }],
+                 "rotation":0,
+                 "type":"area",
+                 "visible":true,
+                 "width":55.4924,
+                 "x":562.5038,
+                 "y":576.10225
+                }, 
+                {
+                 "height":43.2955,
+                 "id":33,
+                 "name":"Lukas",
+                 "properties":[
+                        {
+                         "name":"contentType",
+                         "type":"string",
+                         "value":"DIALOGUE"
+                        }, 
+                        {
+                         "name":"silent",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"translate",
+                         "type":"bool",
+                         "value":true
+                        }],
+                 "rotation":0,
+                 "type":"area",
+                 "visible":true,
+                 "width":55.4924,
+                 "x":659.7538,
+                 "y":576.85225
+                }, 
+                {
+                 "height":43.2955,
+                 "id":34,
+                 "name":"Sara",
+                 "properties":[
+                        {
+                         "name":"contentType",
+                         "type":"string",
+                         "value":"DIALOGUE"
+                        }, 
+                        {
+                         "name":"silent",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"translate",
+                         "type":"bool",
+                         "value":true
+                        }],
+                 "rotation":0,
+                 "type":"area",
+                 "visible":true,
+                 "width":55.4924,
+                 "x":757.5038,
+                 "y":576.10225
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -1124,7 +1204,7 @@
          "y":0
         }],
  "nextlayerid":75,
- "nextobjectid":32,
+ "nextobjectid":35,
  "orientation":"orthogonal",
  "properties":[
         {

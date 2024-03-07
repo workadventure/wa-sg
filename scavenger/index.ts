@@ -130,11 +130,7 @@ const OBJECTS: { ID: number, TITLE: string, BODY: { EN: string, FR: string} }[] 
 
 // Waiting for the API to be ready
 WA.onInit().then(() => {
-    console.log("DEBUG: onInit")
-    
     async function process() {
-        console.log("DEBUG: process")
-        
         const mapUrl = WA.room.mapURL
         const root = mapUrl.substring(0, mapUrl.lastIndexOf("/"))
 
@@ -142,7 +138,6 @@ WA.onInit().then(() => {
         const lang = url.searchParams.get("lang")
         const area = url.searchParams.get("area")
         const object = OBJECTS.find(item =>`scavenger-object${item.ID}` === area)
-        console.log("DEBUG: object data", object)
 
         const title = document.getElementById("scavenger-title") as HTMLElement
         const body = document.getElementById("scavenger-body") as HTMLElement
@@ -169,7 +164,6 @@ WA.onInit().then(() => {
 
         // show the object found by the user
         if (object && lang && title && body && image && check) {
-            console.log("DEBUG: DOM objects defined")
             const itemKey = `scavenger-object${object.ID}`
             title.innerHTML = object.TITLE
             body.innerHTML = object.BODY[lang]
@@ -177,10 +171,7 @@ WA.onInit().then(() => {
 
 
             bootstrapExtra().then(async () => {
-                console.log("DEBUG: bootstrapExtra")
-
                 if (!WA.player.state.hasVariable(itemKey)) {
-                    console.log("DEBUG: player do not have variable", itemKey)
 
                     // player found the item for the first time
                     try {
@@ -190,28 +181,25 @@ WA.onInit().then(() => {
                             ttl: 24 * 3600,
                             scope: "world"
                         })
-                        console.log("DEBUG: variable saved to 'true'")
                     } catch (error) {
                         console.error('Error saving variable:', error)
                         return
                     }
 
                     if (WA.player.state.loadVariable(itemKey) === true) {
-                        console.log("DEBUG: variable value is actually 'true', granting XP...")
-
                         try {
                             await levelUp(QUEST_KEY, xpPerItem)
-                            console.log(`"DEBUG": Discovered item ${object.ID}. ${xpPerItem} XP awarded!`)
+                            console.log(`Discovered item ${object.ID}. ${xpPerItem} XP awarded!`)
                         } catch (error) {
                             console.error('Error granting XP:', error)
                         }
                     } else {
-                        console.error('"DEBUG": variable has been saved but its value was not loaded properly.')
+                        console.error('Variable has been saved but its value was not loaded properly.')
                     }
                 } else {
                     // player found the item but not for the first time
                     check.innerHTML = "&check;"
-                    console.log(`"DEBUG": You've already discovered item ${object.ID}. No additional XP awarded.`);
+                    console.log(`You've already discovered item ${object.ID}. No additional XP awarded.`);
                 }
             })
         } else {
@@ -221,10 +209,8 @@ WA.onInit().then(() => {
     }
       
     if (document.readyState === "loading") {
-        console.log("DEBUG: Loading hasn't finished yet...")
         document.addEventListener("DOMContentLoaded", process)
     } else {
-        console.log("DEBUG: `DOMContentLoaded` has already fired")
         process()
     }
 })

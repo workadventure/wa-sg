@@ -29,6 +29,7 @@ export default defineConfig({
                 index: "./index.html",
                 scavenger: "./scavenger/index.html",
                 administration: "./administration/index.html",
+                dialogueBox: "./dialogue-box/index.html",
                 ...getMapsScripts(maps),
             },
         },
