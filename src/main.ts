@@ -1,7 +1,7 @@
 /// <reference types="@workadventure/iframe-api-typings" />
 
 import { bootstrapExtra } from "@workadventure/scripting-api-extra";
-import { ActionMessage, CoWebsite, CreateUIWebsiteEvent, Popup, UIWebsite } from "@workadventure/iframe-api-typings";
+import { ActionMessage, CoWebsite, UIWebsite } from "@workadventure/iframe-api-typings";
 import { getLayersMap, Properties } from "@workadventure/scripting-api-extra/dist";
 
 console.info('Script started successfully');
