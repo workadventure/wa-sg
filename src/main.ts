@@ -166,7 +166,7 @@ WA.onInit().then(() => {
         callback: () => {
             WA.ui.modal.openModal({
                 title: "Help",
-                src: 'https://workadventu.re',
+                src: root + '/Notice_Utilisateurs.pdf',
                 allowApi: false,
                 allow: "microphone; camera",
                 position: "center",
@@ -182,7 +182,7 @@ WA.onInit().then(() => {
         callback: () => {
             WA.ui.modal.openModal({
                 title: "Plan",
-                src: 'https://workadventu.re',
+                src: root + '/Repartition_GFL.pdf',
                 allowApi: false,
                 allow: "microphone; camera",
                 position: "center",
