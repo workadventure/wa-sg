@@ -9,7 +9,7 @@ export class AvatarComponent implements AvatarProps {
 
     private avatarContainer: HTMLDivElement;
 
-    constructor(name: string = 'Unknown', image: string = '/unknown-avatar.webp') {
+    constructor(name: string = 'Unknown', image: string = '/dialogue-box/unknown.webp') {
         this.name = name;
         this.image = image;
 

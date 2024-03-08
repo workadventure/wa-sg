@@ -57,7 +57,6 @@ async function process() {
       message: dialogue.MESSAGE[lang]
     }
 
-    // Create instance of DialogueBoxComponent
     const dialogueBoxComponent = new DialogueBoxComponent(avatarProps, messageProps);
 
     if (appElement) {
@@ -68,7 +67,6 @@ async function process() {
   }
 }
 
-// Render dialogue box component to the element with ID 'app'
 const appElement = document.getElementById('app');
 
 if (document.readyState === "loading") {
