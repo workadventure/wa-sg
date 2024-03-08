@@ -51,7 +51,7 @@ async function process() {
   if (dialogue && lang) {
     const avatarProps = {
       name: dialogue.NAME,
-      image: `./images/${dialogue.NAME}.png`
+      image: `/dialogue-box/${dialogue.NAME}.png`
     }
     const messageProps = {
       message: dialogue.MESSAGE[lang]
