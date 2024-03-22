@@ -119,11 +119,7 @@ const CONTENT: any[] = [
 
     // Dialogue
     {
-        AREA: "Camille",
-        NPC: "config-in-dialogue-box-website",
-    },
-    {
-        AREA: "Victor",
+        AREA: "Simone",
         NPC: "config-in-dialogue-box-website",
     },
     {
@@ -131,7 +127,11 @@ const CONTENT: any[] = [
         NPC: "config-in-dialogue-box-website",
     },
     {
-        AREA: "Sara",
+        AREA: "Victor",
+        NPC: "config-in-dialogue-box-website",
+    },
+    {
+        AREA: "Sarah",
         NPC: "config-in-dialogue-box-website",
     },
 ]
