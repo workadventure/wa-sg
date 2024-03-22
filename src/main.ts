@@ -311,7 +311,9 @@ function listenArea(contentArea: ContentArea) {
            
             triggerMessage = WA.ui.displayActionMessage({
                 message: url ? contentArea.message : lang === 'FR' ? MESSAGE.FR.UNDEFINED : MESSAGE.EN.UNDEFINED,
-                callback: () => WA.nav.openCoWebSite(url)
+                callback: async () => {
+                    website = await WA.nav.openCoWebSite(url)
+                }
             })
         } else if(contentArea.interaction === 'SCAVENGER') {
             triggerMessage = WA.ui.displayActionMessage({
